@@ -22,7 +22,7 @@ initSentry(Sentry)
 consoleOverride(DEBUG)
 
 // eslint-disable-next-line no-void
-void Browser.browserAction.setBadgeBackgroundColor({ color: "#d90000" })
+void Browser.action.setBadgeBackgroundColor({ color: "#d90000" })
 
 // check the installed reason
 // if install, we want to check the storage for prev onboarded info

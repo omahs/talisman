@@ -147,7 +147,7 @@ export default class State {
       ? "Assets"
       : ""
 
-    Browser.browserAction.setBadgeText({ text })
+    Browser.action.setBadgeText({ text })
 
     if (shouldClose && text === "") {
       this.popupClose()

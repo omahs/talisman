@@ -263,7 +263,7 @@ export default class AssetTransferHandler extends ExtensionHandler {
     gasSettings,
   }: RequestAssetTransferEth): Promise<ResponseAssetTransferEth> {
     const result = await getPairForAddressSafely(fromAddress, async (pair) => {
-      const password = this.stores.password.getPassword()
+      const password = await this.stores.password.getPassword()
       assert(password, "Unauthorised")
 
       const token = await chaindataProvider.getToken(tokenId)

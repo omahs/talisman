@@ -24,7 +24,6 @@ import { assert } from "@polkadot/util"
 import { addressFromMnemonic } from "@talisman/util/addressFromMnemonic"
 import { db as balancesDb } from "@talismn/balances"
 import { liveQuery } from "dexie"
-import Browser from "webextension-polyfill"
 
 // import chainsInit from "@core/libs/init/chains.json"
 // import evmNetworksInit from "@core/libs/init/evmNetworks.json"
@@ -59,7 +58,7 @@ export default class Extension extends ExtensionHandler {
     })
 
     // update the autolock timer whenever a setting is changed
-    Browser.storage.onChanged.addListener(() => {
+    chrome.storage.onChanged.addListener(() => {
       stores.password.resetAutoLockTimer(this.#autoLockTimeout)
     })
 
@@ -81,7 +80,7 @@ export default class Extension extends ExtensionHandler {
       // // if store has no chains yet, consider it's a fresh install or legacy version
       // if ((await db.chains.count()) < 1) {
       //   // delete old localstorage-managed 'db'
-      //   Browser.storage.local.remove([
+      //   chrome.storage.local.remove([
       //     "chains",
       //     "ethereumNetworks",
       //     "tokens",

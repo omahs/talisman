@@ -14,12 +14,15 @@ const normalizeUrl = (url: string) => {
 const useErrorTracking = new ReplaySubject<boolean>(1)
 settingsStore.observable.subscribe((settings) => useErrorTracking.next(settings.useErrorTracking))
 
-export const initSentry = (sentry: typeof SentryBrowser | typeof SentryReact) => {
+export const initSentry = (
+  sentry: typeof SentryBrowser | typeof SentryReact,
+  frontend?: boolean
+) => {
   sentry.init({
     enabled: !DEBUG,
     environment: process.env.BUILD,
     dsn: process.env.SENTRY_DSN,
-    integrations: [new Integrations.BrowserTracing()],
+    integrations: frontend ? [new Integrations.BrowserTracing()] : [],
     release: process.env.RELEASE,
     sampleRate: 1,
     maxBreadcrumbs: 20,
@@ -57,7 +60,8 @@ export const initSentry = (sentry: typeof SentryBrowser | typeof SentryReact) =>
     })
   })
 
-  window.addEventListener("unhandledrejection", (event) => {
-    sentry.captureEvent(event.reason)
-  })
+  if (frontend && typeof window !== "undefined")
+    window.addEventListener("unhandledrejection", (event) => {
+      sentry.captureEvent(event.reason)
+    })
 }

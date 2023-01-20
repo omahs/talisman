@@ -17,8 +17,7 @@
     }
   ],
   "background": {
-    "service_worker": "background.js",
-    "type": "module"
+    "service_worker": "service-worker.js"
   },
   "web_accessible_resources": [
     {

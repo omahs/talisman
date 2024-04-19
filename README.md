@@ -23,7 +23,7 @@ This README was written and verified with:
 - `packages/tsconfig`: shared `tsconfig.json`s used throughout the monorepo
 - `packages/util`: library containing shared non-react code. It is not meant to be npm published.
 
-All our package and apps are 100% [TypeScript](https://www.typescriptlang.org/).
+All our packages and apps are 100% [TypeScript](https://www.typescriptlang.org/).
 
 ## Getting started (wallet extension development)
 
